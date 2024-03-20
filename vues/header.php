@@ -61,7 +61,7 @@
         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-user"></i>  Gestion des continents</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
           <a class="dropdown-item" href="index.php?uc=continents&action=list">Listes des continents</a>
-          <a class="dropdown-item" href="#">Ajouter un continent</a>
+          <a class="dropdown-item" href="index.php?uc=continents&action=add">Ajouter un continent</a>
         </div>
       </li>
     </ul>

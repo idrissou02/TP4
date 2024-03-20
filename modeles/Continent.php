@@ -51,13 +51,13 @@ class Continent {
      *
      * @return continent[] tableau objet contient
      */
-    public static function finAll() :array
+    public static function findAll() :array
     {
         $req=MonPdo::getInstance()->prepare("Select * from continent");
-        $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_LATE, 'Continent');
+        $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Continent');
         $req->execute();
         $lesResultats=$req->fetchALL();
-        return $lesResltats;
+        return $lesResultats;
     }
 
     /**
@@ -69,10 +69,10 @@ class Continent {
     public static function findById(int $id) :Continent
     {
         $req=MonPdo::getInstance()->prepare("Select * from continent where num= :id");
-        $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_LATE, 'Continent');
+        $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Continent');
         $req->bindParam(':id', $id);
         $req->execute();
-        $leResultat=$req->fetch();
+        $lesResultats=$req->fetch();
         return $lesResultats; 
     }
 
@@ -86,8 +86,8 @@ class Continent {
     {
         $req=MonPdo::getInstance()->prepare(" Insert into continent (libelle) value(:libelle)");
         $req->bindParam(':libelle', $continent->getLibelle());
-        $nb=$req->execute();
-        return $lesResltats;
+        $lesResultats=$req->fetch();
+        return $lesResultats;
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php session_start(); 
 include "vues/header.php"; 
-include "modeles/continent.php";
+include "modeles/Continent.php";
 include "modeles/monPdo.php";
 
 $uc = empty($_GET['uc']) ? "accueil" : $_GET['uc'];

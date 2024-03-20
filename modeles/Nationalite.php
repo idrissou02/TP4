@@ -70,7 +70,7 @@ class Nationalite {
      */
     public function setNumContinent(Continent $continent) : self
     {
-        $this->numContinent = $numContinent->getNum();
+        $this->numContinent = $continent->getNum();
 
         return $this;
     }
@@ -86,7 +86,7 @@ class Nationalite {
         $req->setFetchMode(PDO::FETCH_OBJ);
         $req->execute();
         $lesResultats=$req->fetchALL();
-        return $lesResltats;
+        return $lesResultats;
     }
 
     /**
@@ -95,14 +95,14 @@ class Nationalite {
      * @param integer $id numéro Nationalité 
      * @return Nationalité objet Nationalité trouver
      */
-    public static function findById(int $id) :Nationalité
+    public static function findById(int $id) :Nationalite
     {
         $req=MonPdo::getInstance()->prepare("Select * from Nationalité where num= :id");
-        $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_LATE, 'Nationalité');
+        $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Nationalité');
         $req->bindParam(':id', $id);
         $req->execute();
-        $leResultat=$req->fetch();
-        return $lesResltats; 
+        $lesResultats=$req->fetch();
+        return $lesResultats; 
     }
 
     /**
@@ -111,13 +111,13 @@ class Nationalite {
      * @param Nationalité $Nationalité Nationalité a ajouter 
      * @return integer resultat(1 si l'operation a réussi, 0 sinon)
      */
-    public static function add(Nationalité $Nationalité) :int
+    public static function add(Nationalite $Nationalité) :int
     {
         $req=MonPdo::getInstance()->prepare(" Insert into Nationalité (libelle, numContinent) value(:libelle, :numContinent)");
-        $req->bindParam(':libelle', $nationalité->getLibelle());
-        $req->bindParam(':numContinent', $nationalité->numContinent());
+        $req->bindParam(':libelle', $Nationalité->getLibelle());
+        $req->bindParam(':numContinent', $Nationalité->numContinent());
         $nb=$req->execute();
-        return $lesResltats;
+        return $nb;
     }
 
     /**
@@ -126,12 +126,12 @@ class Nationalite {
      * @param Nationalité $Nationalité Nationalité a modifier 
      * @return integer resultat(1 si l'operation a réussi, 0 sinon)
      */
-    public static function update(Nationalité $Nationalité) :int
+    public static function update(Nationalite $Nationalité) :int
     {
         $req=MonPdo::getInstance()->prepare(" update Nationalité set libelle= :libelle, numContinent= :numContinent where num= :num");
-        $req->bindParam(':id', $nationalité->getNum());
-        $req->bindParam(':libelle', $nationalité->getLibelle());
-        $req->bindParam(':numContinent', $nationalité->numContinent());
+        $req->bindParam(':id', $Nationalité->getNum());
+        $req->bindParam(':libelle', $Nationalité->getLibelle());
+        $req->bindParam(':numContinent', $Nationalité->numContinent());
         $nb=$req->execute();
         return $nb;
     }
@@ -142,10 +142,10 @@ class Nationalite {
      * @param Nationalité $Nationalité
      * @return integer
      */
-    public static function delete(Nationalité $Nationalité) :int
+    public static function delete(Nationalite $Nationalité) :int
     {
         $req=MonPdo::getInstance()->prepare(" delete ifrom Nationalité where num= :id");
-        $req->bindParam(':id', $nationalité->getNum());
+        $req->bindParam(':id', $Nationalité->getNum());
         $nb=$req->execute();
         return $nb;
     }
