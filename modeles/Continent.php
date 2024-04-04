@@ -49,7 +49,7 @@ class Continent {
     /**
      * Retourne l'ensemble des continents
      *
-     * @return continent[] tableau objet contient
+     * @return Continent[] tableau objet contient
      */
     public static function findAll() :array
     {

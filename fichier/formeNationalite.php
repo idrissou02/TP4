@@ -43,7 +43,6 @@ $lesContinents=$reqContinent->fetchAll();
     <div class="col"><button type='submit' class='btn btn-warning btn-block'><?php echo $action ?> </button></div>
   </div>
 </form>
-
 </div>  
 <?php include "footer.php";
 
