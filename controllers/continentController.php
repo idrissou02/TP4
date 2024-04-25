@@ -11,7 +11,7 @@ switch($action){
     break;
     case 'update' :
         $mode="Modifier";
-        include('formContinent.php');
+        include('vues/formContinent.php');
     break;
     case 'delete' :
     break;

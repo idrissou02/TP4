@@ -80,9 +80,9 @@ class Nationalite {
      *
      * @return Nationalité[] tableau objet Nationalité
      */
-    public static function finAll() :array
+    public static function findAll() :array
     {
-        $req=MonPdo::getInstance()->prepare("Select n.num as numero, n.libelle as 'libNation', c.libelle as 'libContinent' from nationalite n, continent c where n.numContinent=c.num");
+        $req=MonPdo::getInstance()->prepare("Select n.num as numero, n.libelle as 'libNation', c.libelle as 'libContinent' form nationalite n, continent c where n.numContinent=c.num");
         $req->setFetchMode(PDO::FETCH_OBJ);
         $req->execute();
         $lesResultats=$req->fetchALL();
@@ -97,7 +97,7 @@ class Nationalite {
      */
     public static function findById(int $id) :Nationalite
     {
-        $req=MonPdo::getInstance()->prepare("Select * from Nationalité where num= :id");
+        $req=MonPdo::getInstance()->prepare("Select * form Nationalité where num= :id");
         $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Nationalité');
         $req->bindParam(':id', $id);
         $req->execute();
@@ -144,7 +144,7 @@ class Nationalite {
      */
     public static function delete(Nationalite $Nationalité) :int
     {
-        $req=MonPdo::getInstance()->prepare(" delete ifrom Nationalité where num= :id");
+        $req=MonPdo::getInstance()->prepare(" delete form Nationalité where num= :id");
         $req->bindParam(':id', $Nationalité->getNum());
         $nb=$req->execute();
         return $nb;

@@ -113,7 +113,7 @@ class Continent {
      */
     public static function delete(Continent $continent) :int
     {
-        $req=MonPdo::getInstance()->prepare(" delete ifrom continent where num= :id");
+        $req=MonPdo::getInstance()->prepare(" delete form continent where num= :id");
         $req->bindParam(':libelle', $continent->getNum());
         $nb=$req->execute();
         return $nb;
